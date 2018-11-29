@@ -2,35 +2,66 @@
 
     <div class="form-group">
         <label for="name">Name</label>
-        <input #name="ngModel" [(ngModel)]="shipping.name" name="name" id="title" type="text" class="form-control"
-            required>
+        <input #name="ngModel" [(ngModel)]="shipping.name" pattern="[a-zA-Z][a-zA-Z ]{2,}" name="name" id="title" type="text"
+            class="form-control" required>
     </div>
-    <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
-        <div *ngIf="name.errors.required">Name is required.</div>
+    <div class="alert alert-danger" *ngIf="name.errors && (name.dirty || name.touched)">
+        <div [hidden]="!name.errors.required">
+            Name is required!
+        </div>
+        <div [hidden]="!name.errors.pattern">
+            Must be a Valid Customer name
+        </div>
     </div>
 
     <div class="form-group">
         <label for="phone">Phone</label>
-        <input #phone="ngModel" [(ngModel)]="shipping.phone" name="phone" id="phone" type="text" class="form-control"
-            minlength="9" maxlength="10" required>
+        <input #phone="ngModel" [(ngModel)]="shipping.phone" name="phone" id="phone" type="tel" class="form-control"
+            pattern="[1-9][0-9]{9}" maxlength="10" required>
     </div>
-    <!-- <div class="alert alert-danger" *ngIf="phone.touched && phone.invalid">
-        <div *ngIf="phone.errors.required">Phone number is required</div>
-        <div [hidden]="!phone.errors.maxlength">Only 10 characters allowed.</div>
-    </div> -->
     <div *ngIf="phone.errors && (phone.dirty || phone.touched)" class="alert alert-danger">
-        <div [hidden]="!phone.errors.minlength">
-            Must have a valid 10 digit number
+        <div [hidden]="!phone.errors.required">
+            Phone is required!
+        </div>
+        <div [hidden]="!phone.errors.pattern">
+            Must be a valid 10 digit phone number
         </div>
     </div>
     <div class="form-group">
         <label for="address">Address</label>
-        <input #address="ngModel" [(ngModel)]="shipping.address" name="address" id="address" type="address" class="form-control"
+        <input #address="ngModel" [(ngModel)]="shipping.address" name="address" id="address" type="text" pattern="^[#.0-9a-zA-Z\s,-]+$" class="form-control"
             required>
     </div>
-    <div class="alert alert-danger" *ngIf="address.touched && address.invalid">
-        <div *ngIf="address.errors.required">Address is required.</div>
+    <div class="alert alert-danger" *ngIf="address.errors && (address.dirty || address.touched)">
+        <div [hidden]="!address.errors.required">
+           Address is required!
+        </div>
+        <div [hidden]="!address.errors.pattern">
+            Must be a valid Shipping Address
+        </div>
     </div>
 
     <button class="btn btn-primary" [disabled]="!shippingForm.valid">Place Order</button>
 </form>
+
+<!-- <form class="form-horizontal" [formGroup]="form">
+
+    <div class="form-group">
+      <div class="col-sm-12">
+        <label for="email" class="control-label">Email</label>
+        <input type="text" id="email" class="form-control" formControlName="email">
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <div class="col-sm-12">
+        <label for="password" class="control-label">Password</label>
+        <input type="password" id="password" class="form-control" formControlName="password">
+      </div>
+    </div>
+  
+    <button type="submit" class="btn btn-primary" [disabled]="!form.valid">
+      Submit
+    </button>
+  
+  </form> -->
