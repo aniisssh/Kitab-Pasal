@@ -1,0 +1,36 @@
+<form #shippingForm="ngForm" (ngSubmit)="placeOrder(shippingForm.value)">
+
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input #name="ngModel" [(ngModel)]="shipping.name" name="name" id="title" type="text" class="form-control"
+            required>
+    </div>
+    <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
+        <div *ngIf="name.errors.required">Name is required.</div>
+    </div>
+
+    <div class="form-group">
+        <label for="phone">Phone</label>
+        <input #phone="ngModel" [(ngModel)]="shipping.phone" name="phone" id="phone" type="text" class="form-control"
+            minlength="9" maxlength="10" required>
+    </div>
+    <!-- <div class="alert alert-danger" *ngIf="phone.touched && phone.invalid">
+        <div *ngIf="phone.errors.required">Phone number is required</div>
+        <div [hidden]="!phone.errors.maxlength">Only 10 characters allowed.</div>
+    </div> -->
+    <div *ngIf="phone.errors && (phone.dirty || phone.touched)" class="alert alert-danger">
+        <div [hidden]="!phone.errors.minlength">
+            Must have a valid 10 digit number
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="address">Address</label>
+        <input #address="ngModel" [(ngModel)]="shipping.address" name="address" id="address" type="address" class="form-control"
+            required>
+    </div>
+    <div class="alert alert-danger" *ngIf="address.touched && address.invalid">
+        <div *ngIf="address.errors.required">Address is required.</div>
+    </div>
+
+    <button class="btn btn-primary" [disabled]="!shippingForm.valid">Place Order</button>
+</form>

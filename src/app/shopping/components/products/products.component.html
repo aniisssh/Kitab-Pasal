@@ -1,0 +1,17 @@
+<div [ngStyle]="{'background' : 'url(https://s3-eu-west-1.amazonaws.com/images.linnlive.com/46f002540b02bbcc49ff64da6bbb6eee/e5ec190d-2384-44d1-ab55-2c7e64a7531a.jpg)'}">
+  <div class="row">
+    <div class="col-3">
+      <product-filter [category]="selectedCategory"></product-filter>
+    </div>
+    <div class="col-9">
+      <div class="row" *ngIf="cart$ | async as cart ">
+        <ng-container *ngFor="let p of filteredProducts; let i = index">
+          <div class="col">
+            <product-card [product]="p" [shopping-cart]="cart"></product-card>
+          </div>
+          <div *ngIf="(i + 1) % 2 === 0" class="w-100"></div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

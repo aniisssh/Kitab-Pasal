@@ -1,0 +1,29 @@
+<h1>
+    Order Summary
+  </h1>
+  <ng-container>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <td style='color: blue; font-weight: bold'>Shipping Items</td>
+          <td *ngFor='let item of order.items' style='font-weight:bold;'>Title: "{{item.product.title}}"
+            <br>
+              <br>Quantity: {{item.quantity }}
+            <br>  <br>Price(pc): {{item.product.price}}
+            <br>  <br>Total Price: {{item.totalPrice }}
+          </td>
+        </tr>
+        <tr>
+          <td style='color: blue; font-weight: bold'>Shipping Address</td>
+          <td style='font-weight:bold;'>{{ order.shipping.name }},
+              <br> {{ order.shipping.phone}},
+              <br> {{ order.shipping.address}}
+          </td>
+        </tr>
+        <tr>
+            <td style='color: blue; font-weight: bold'>Order Placed </td>
+            <td style='font-weight:bold;'>{{ order.datePlaced | date}}</td>
+        </tr>
+      </thead>
+    </table>
+  </ng-container>
