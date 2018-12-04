@@ -22,7 +22,7 @@
         <tr *ngFor="let p of filteredProducts">
             <td>{{ p.title }}</td>
             <td>{{ p.author }}</td>
-            <td>₹{{ p.price }}</td>
+            <td>रू {{ p.price }}</td>
             <td>
                 <button class="btn btn-primary" [routerLink]="['/admin/products/', p.$key]">Edit</button>
             </td>

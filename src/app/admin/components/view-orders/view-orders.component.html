@@ -8,9 +8,9 @@
         <td style='color: blue; font-weight: bold'>Shipping Items</td>
         <td *ngFor='let item of order.items' style='font-weight:bold;'>Title: "{{item.product.title}}"
           <br>
-            <br>Quantity: {{item.quantity }}
-          <br>  <br>Price(pc): {{item.product.price}}
-          <br>  <br>Total Price: {{item.totalPrice }}
+            <br>Quantity: {{item.quantity }}pc
+          <br>  <br>Price(pc): रू {{item.product.price}}
+          <br>  <br>Total Price: रू {{item.totalPrice }}
           </td>
       </tr>
       <tr>

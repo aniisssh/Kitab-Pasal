@@ -3,7 +3,7 @@
   <div class="card-body">
     <h5 class="card-title">{{product.title}}</h5>
     <p class="card-title">{{product.author}}</p>
-    <p class="card-text">{{product.price | currency:'INR':"symbol-narrow" }}</p>
+    <p class="card-text">रू {{product.price }}</p>
   </div>
 
   <div *ngIf="showActions && shoppingCart" class="card-footer">

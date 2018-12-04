@@ -11,8 +11,7 @@
         </div>
       </div>
 
-      <div class="form-group">
-        <label for="author">Author</label>
+      <div class="form-group">` 21   
         <input #author="ngModel" [(ngModel)]="product.author" name="author" id="author" type="text" class="form-control"
           required>
         <div class="alert alert-danger" *ngIf="author.touched && author.invalid">
@@ -24,7 +23,7 @@
         <label for="price">Price</label>
         <div class="input-group">
           <div class="input-group-prepend">
-            <span class="input-group-text">₹</span>
+            <span class="input-group-text">रू</span>
           </div>
           <input #price="ngModel" [(ngModel)]="product.price" name="price" type="text" class="form-control" required
             [min]="0">

@@ -1,13 +1,13 @@
 <h1>Shopping Cart</h1>
-<div class="card" *ngIf="cart$ | async as cart" style="width: 80%;">
-  <div class="card-body">
+<div class="card" *ngIf="cart$ | async as cart" >
+  <div class="card-body ">
     <p>
       You have {{ cart.totalItemsCount }} items in your shopping cart.
       <button *ngIf="cart.items.length" (click)="clearCart()" class="float-right btn btn-danger btn-sm">Clear Shopping Cart</button>
 
     </p>
   </div>
-  <table class="table">
+  <table class="table table-bordered">
     <thead>
       <tr>
         <th></th>
@@ -29,7 +29,7 @@
           </product-quantity>
         </td>
         <td class="text-right">
-          {{ item.totalPrice | currency:'INR':'symbol' }}
+            रू {{ item.totalPrice }}
         </td>
       </tr>
     </tbody>
@@ -38,7 +38,7 @@
         <th></th>
         <th></th>
         <th></th>
-        <th class="text-right">{{ cart.getTotalPrice | currency:'INR':'symbol' }}</th>
+        <th class="text-right">रू {{ cart.getTotalPrice }}</th>
       </tr>
       <tr>
         <th colspan="4">
