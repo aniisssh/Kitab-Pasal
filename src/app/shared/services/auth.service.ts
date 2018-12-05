@@ -14,6 +14,7 @@ import { switchMap } from 'rxjs/operators';
 export class AuthService {
 
   user$: Observable<firebase.User>;
+  userDetails: firebase.User = null;
 
   constructor(
     private userService: UserService,
@@ -21,16 +22,57 @@ export class AuthService {
     private route: ActivatedRoute,
     private router: Router) {
     this.user$ = afAuth.authState;
+  
+  this.user$.subscribe(
+    (user$) => {
+      if (user$) {
+        this.userDetails = user$;
+        console.log(this.userDetails);
+      }
+      else {
+        this.userDetails = null;
+      }
+    }
+  );
+}
+
+  signInWithTwitter() {
+    let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
+    localStorage.setItem('returnUrl', returnUrl);
+
+    var provider = new firebase.auth.TwitterAuthProvider();
+
+    this.afAuth.auth.signInWithPopup(provider);
+
   }
 
-  login() {
+  signInWithFacebook() {
+    let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
+    localStorage.setItem('returnUrl', returnUrl);
+    var provider = new firebase.auth.FacebookAuthProvider();
+
+    provider.addScope('user_birthday');
+
+    this.afAuth.auth.signInWithPopup(provider);
+
+  }
+
+  signInWithGoogle() {
     let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
     localStorage.setItem('returnUrl', returnUrl);
 
     var provider = new firebase.auth.GoogleAuthProvider();
     provider.addScope('https://www.googleapis.com/auth/plus.login');
     this.afAuth.auth.signInWithPopup(provider);
-    //this.afAuth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvier());
+  }
+
+
+  login() {
+    if (this.userDetails == null) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   logout() {
@@ -43,9 +85,9 @@ export class AuthService {
     return this.user$
       .pipe(
         switchMap((user: firebase.User) => {
-            if(user) return this.userService.get(user.uid);
-            return of(null);
+          if (user) return this.userService.get(user.uid);
+          return of(null);
         })
-    );
+      );
   }
 }

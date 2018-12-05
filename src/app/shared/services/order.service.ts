@@ -52,4 +52,9 @@ export class OrderService {
           });
         }));
   }
+
+  delete(orderId) {
+    return this.db.object('/orders/' + orderId).remove();
+  }
+
 }

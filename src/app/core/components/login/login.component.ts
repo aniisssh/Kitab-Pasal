@@ -9,10 +9,18 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class LoginComponent {
 
-  constructor(private auth: AuthService) { 
+  constructor(private auth: AuthService) {
+  }
+  
+  signInWithTwitter() {
+    this.auth.signInWithTwitter();
   }
 
-  login(){
-    this.auth.login();
-   } 
+  signInWithFacebook() {
+    this.auth.signInWithFacebook();
+  }
+
+  signInWithGoogle(){
+    this.auth.signInWithGoogle();
+  }
 }

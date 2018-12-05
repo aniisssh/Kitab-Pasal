@@ -7,7 +7,8 @@
       <th>Date</th>
       <th>Phone</th>
       <th>Shipping Address</th>
-      <th></th>
+      <th colspan="2" scope="colgroup"></th>
+
     </tr>
   </thead>
   <tbody>
@@ -17,7 +18,11 @@
       <td>{{ order.shipping.phone }}</td>
       <td>{{ order.shipping.address}}</td>
       <td>
-        <button class="btn btn-primary" [routerLink]="['/admin/orders/', order.$key]">View</button>      </td>
+        <button class="btn btn-primary" [routerLink]="['/admin/orders/', order.$key]">View</button>
+      </td>
+      <td>
+        <button class="btn btn-danger" (click)="delete(order.$key)">Delete</button>
+      </td>
     </tr>
   </tbody>
 </table>

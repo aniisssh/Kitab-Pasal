@@ -1,5 +1,19 @@
-<button 
-(click)="login()"
-class="btn btn-primary">Login With Google
-</button>
+<div class="form-group">
+    <p class="login-icon">
+        <i class="fa fa-lock fa-lg fa-5x"> </i>
+    </p>
+    <button type="button" class="btn btn-block" (click)="signInWithFacebook()">
+        <i class="fa fa-facebook" aria-hidden="true"></i>
+        Login with Facebook
+    </button>
 
+    <button type="button" class="btn btn-block" (click)="signInWithTwitter()">
+        <i class="fa fa-twitter" aria-hidden="true"></i>
+        Login with Twitter
+    </button>
+
+    <button type="button" class="btn btn-block" (click)="signInWithGoogle()">
+        <i class="fa fa-google" aria-hidden="true"></i>
+        Login with Google
+    </button>
+</div>
