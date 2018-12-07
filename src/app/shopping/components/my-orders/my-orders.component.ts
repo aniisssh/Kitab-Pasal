@@ -21,8 +21,6 @@ export class MyOrdersComponent implements OnInit {
       .pipe(
         switchMap(u => orderService.getOrdersByUser(u.uid))
       )
-      console.log(this.orders$);
-
   }
 
 

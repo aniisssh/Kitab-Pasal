@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router';
 import { AuthGuard } from 'shared/services/auth-guard.service';
 import { AdminAuthGuard } from './services/admin-auth-guard.service';
 import { ViewOrdersComponent } from './components/view-orders/view-orders.component';
+import { AdminFeedbacksComponent } from './components/admin-feedbacks/admin-feedbacks.component';
 
 @NgModule({
   imports: [
@@ -39,7 +40,12 @@ import { ViewOrdersComponent } from './components/view-orders/view-orders.compon
         path: 'admin/orders',
         component: AdminOrdersComponent,
         canActivate: [AuthGuard, AdminAuthGuard]
-      }
+      },
+      {
+        path: 'admin/feedbacks',
+        component: AdminFeedbacksComponent,
+        canActivate: [AuthGuard, AdminAuthGuard]
+      },
     ]),
 
   ],
@@ -48,6 +54,7 @@ import { ViewOrdersComponent } from './components/view-orders/view-orders.compon
     AdminOrdersComponent,
     ProductFormComponent,
     ViewOrdersComponent,
+    AdminFeedbacksComponent,
   ]
 })
 export class AdminModule { }

@@ -1,12 +1,12 @@
-<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top container">
   <a class="navbar-brand" routerLink="/">Kitab Pasal 📚
   </a>
   <button class="navbar-toggler d-lg-none" type="button" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed"
-    aria-controls="navbarsExampleDefault" aria-label="Toggle navigation">
+     aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo02" [ngbCollapse]="isCollapsed">
+  <div class="collapse navbar-collapse" id="navbartoggler" [ngbCollapse]="isCollapsed">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
         <a class="nav-link" routerLink="/shopping-cart">
@@ -32,10 +32,12 @@
         <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown01">
           <ng-container *ngIf="!appUser.isAdmin">
             <a class="dropdown-item" routerLink="/my-orders">My Orders</a>
+            <a class="dropdown-item" routerLink="/my-feedback">Feedback</a>
           </ng-container>
           <ng-container *ngIf="appUser.isAdmin">
             <a class="dropdown-item" routerLink="/admin/orders">Manage Orders</a>
             <a class="dropdown-item" routerLink="/admin/products">Manage Products</a>
+            <a class="dropdown-item" routerLink="/admin/feedbacks">View Feedbacks</a>
           </ng-container>
           <a class="dropdown-item" (click)="logout()">Log Out</a>
         </div>

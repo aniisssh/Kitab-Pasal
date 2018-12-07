@@ -1,0 +1,49 @@
+<h1>Feedback Form</h1>
+<div>
+    
+</div>
+<form #feedbackForm="ngForm" (ngSubmit)="placeFeedback(feedbackForm.value)">
+
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input #name="ngModel" [(ngModel)]="feedback.name || appUser.name" pattern="[a-zA-Z][a-zA-Z ]{2,}" name="name"
+            id="title" type="text" class="form-control" required>
+
+    </div>
+    <div class="alert alert-danger" *ngIf="name.errors && (name.dirty || name.touched)">
+        <div [hidden]="!name.errors.required">
+            Name is required!
+        </div>
+        <div [hidden]="!name.errors.pattern">
+            Must be a Valid Customer name
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input #email="ngModel" [(ngModel)]="feedback.email || appUser.email" name="email" type="email" pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})"
+            id="title" class="form-control" required>
+    </div>
+    <div class="alert alert-danger" *ngIf="email.errors && (email.dirty || email.touched)">
+        <div [hidden]="!email.errors.required">
+            Email is required!
+        </div>
+        <div [hidden]="!email.errors.pattern">
+            Must be a Valid Customer email
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="msg">Suggestions</label>
+        <textarea #msg="ngModel" [(ngModel)]="feedback.msg" name="msg" rows="4" cols="50" maxlength="100" class="form-control"
+            required>
+        </textarea>
+    </div>
+    <div class="alert alert-danger" *ngIf="msg.errors && (msg.dirty || msg.touched)">
+        <div [hidden]="!msg.errors.required">
+            Suggestion is required!
+        </div>
+    </div>
+
+    <button class="btn btn-primary" [disabled]="!feedbackForm.valid">Submit</button>
+</form>

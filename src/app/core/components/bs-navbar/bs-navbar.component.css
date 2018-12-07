@@ -2,3 +2,12 @@
 .dropdown-toggle{
     cursor: pointer;
 }
+
+
+@media (max-width: 600px) {
+    .navbar ul li {
+      display: block;
+      clear: both;
+      width: 100%;
+      }
+  }

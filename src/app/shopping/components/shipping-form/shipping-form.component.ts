@@ -1,11 +1,12 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { OrderService } from '../../../shared/services/order.service';
-import { AuthService } from '../../../shared/services/auth.service';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { AppUser } from 'shared/models/app-user';
+
 import { Order } from '../../../shared/models/order';
 import { ShoppingCart } from '../../../shared/models/shopping-cart';
-import { AppUser } from 'shared/models/app-user';
+import { AuthService } from '../../../shared/services/auth.service';
+import { OrderService } from 'shared/services/order.service';
 
 @Component({
   selector: 'shipping-form',
@@ -19,7 +20,7 @@ export class ShippingFormComponent implements OnInit, OnDestroy {
   userSubscription: Subscription;
   @Input('cart') cart: ShoppingCart;
 
-  constructor( 
+  constructor(
     private auth: AuthService,
     private orderService: OrderService,
     private authService: AuthService,
@@ -35,7 +36,7 @@ export class ShippingFormComponent implements OnInit, OnDestroy {
   }
 
   placeOrder(shipping) {
-    let order = new Order(this.userId, shipping , this.cart);
+    let order = new Order(this.userId, shipping, this.cart);
     let result = this.orderService.placeOrder(order);
     this.router.navigate(['/order-success', result.key]);
   }

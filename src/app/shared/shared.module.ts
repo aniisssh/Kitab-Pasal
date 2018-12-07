@@ -1,6 +1,7 @@
+import { FeedbackService } from './services/feedback.service';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DataTableModule } from 'angular-6-datatable';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -12,14 +13,15 @@ import { ProductQuantityComponent } from './components/product-quantity/product-
 import { AuthGuard } from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
 import { CategoryService } from './services/category.service';
-import { OrderService } from './services/order.service';
 import { ProductService } from './services/product.service';
 import { ShoppingCartService } from './services/shopping-cart.service';
 import { UserService } from './services/user.service';
+import { OrderService } from './services/order.service';
 
 @NgModule({
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     FormsModule,
     CustomFormsModule,
     DataTableModule,
@@ -54,6 +56,7 @@ import { UserService } from './services/user.service';
     ProductService,
     ShoppingCartService,
     OrderService,
+    FeedbackService
   ]
 })
 export class SharedModule { }
